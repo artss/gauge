@@ -46,7 +46,9 @@
   <script src="js/gauge.js"></script>
 </head>
 <body>
+  <input id="gauge-val" type="number" value="20" min="0" max="100">
   <div id="gauge"></div>
+  <input id="gauge-jquery-val" type="number" value="-0.7" min="-1" max="1">
   <div id="gauge-jquery"></div>
 
   <script>
@@ -73,6 +75,14 @@
     });
 
     $gauge.gauge(-0.7);
+
+    $('#gauge-val').change(function() {
+      gauge.setValue($(this).val());
+    });
+
+    $('#gauge-jquery-val').change(function() {
+      $gauge.gauge($(this).val());
+    });
   </script>
 </body>
 </html>
