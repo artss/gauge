@@ -1,3 +1,5 @@
+/* global $ */
+
 var Gauge = (function() {
   'use strict';
 
@@ -111,7 +113,9 @@ var Gauge = (function() {
       text.setAttribute('class', 'gauge-marks-text');
       text.setAttribute('x', minSize / 2 * (1 - sin * textRadius));
       text.setAttribute('y', minSize / 2 * (1 + cos * textRadius));
-      text.appendChild(document.createTextNode(cvalue));
+
+      text.appendChild(document.createTextNode(this.options.markFormat ? this.options.markFormat(cvalue) : cvalue));
+
       this.svg.appendChild(text);
 
       cvalue += this.options.step;
@@ -165,9 +169,18 @@ var Gauge = (function() {
 
     this.el.appendChild(this.svg);
 
-    if (isFinite(this.options.value)) {
-      this.setValue(this.options.value);
-    }
+    // Render arrow
+
+    var arrowSize = minSize * 0.3;
+    sx = size.width / 2;
+    sy = size.height / 2 - arrowSize;
+    this.arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    this.arrow.setAttribute('class', 'gauge-arrow');
+    this.arrow.setAttribute('stroke-linecap', 'round');
+    this.arrow.setAttribute('d', 'M' + sx + ',' + sy + ' l' + (size.width * 0.02) + ',' + arrowSize + ' l' + (-size.width * 0.04) + ',0 z');
+    this.svg.appendChild(this.arrow);
+
+    this.setValue(isFinite(this.options.value) ? this.options.value : this.options.from);
   }
 
   /**
@@ -201,7 +214,37 @@ var Gauge = (function() {
         value = this.options.to;
       }
     }
+
+    var angle = (Math.abs((value - this.options.from) / this.delta) - 0.5) * this.options.angle;
+
+    this.arrow.style.transform = 'rotate(' + angle + 'deg)';
+
+    return this.value;
   };
+
+  /**
+   * jQuery plugin
+   */
+  if ($) {
+    $.fn.gauge = function(options) {
+      console.log('options', options);
+
+      var $el = $(this);
+
+      var gauge = $el.data('gauge');
+
+      if (!gauge) {
+        gauge = new Gauge($el[0], options);
+        $el.data('gauge', gauge);
+      }
+
+      if (isFinite(options)) {
+        gauge.setValue(options);
+      }
+
+      return $el;
+    };
+  }
 
   return Gauge;
 })();
