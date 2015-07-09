@@ -1,7 +1,7 @@
 {
-  "name": "gauge",
+  "name": "gauge-svg",
   "version": "0.0.1",
-  "homepage": "https://github.com/artss/gauge",
+  "homepage": "https://github.com/artss/gauge-svg",
   "authors": [
     "Artem Sazhin <arts@psto.net>"
   ],
