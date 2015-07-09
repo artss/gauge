@@ -242,8 +242,6 @@
    */
   if ($) {
     $.fn.gauge = function(options) {
-      console.log('options', options);
-
       var $el = $(this);
 
       var gauge = $el.data('gauge');
