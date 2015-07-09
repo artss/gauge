@@ -1,0 +1,17 @@
+{
+  "name": "gauge",
+  "version": "0.0.1",
+  "homepage": "https://github.com/artss/gauge",
+  "authors": [
+    "Artem Sazhin <arts@psto.net>"
+  ],
+  "description": "A gauge widget",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
