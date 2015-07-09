@@ -23,8 +23,8 @@ var Gauge = (function() {
   /**
    * Covert degrees to radians
    */
-  function rad(deg) {
-    return Math.PI / 180 * deg;
+  function rad(value) {
+    return Math.PI / 180 * value;
   }
 
   /**
@@ -89,10 +89,15 @@ var Gauge = (function() {
     // Render marks
 
     var marks = [];
-    var step = rad(this.options.step / Math.abs(this.delta) * this.options.angle);
+    var stepAngle = rad(this.options.step / Math.abs(this.delta) * this.options.angle);
+
+    if (this.delta < 0 && this.options.step > 0) {
+      this.options.step = -this.options.step;
+    }
+
     var cvalue = this.options.from;
 
-    for (i = startAngle; i <= endAngle; i += step) {
+    for (i = startAngle; i <= endAngle; i += stepAngle) {
       var sin = Math.sin(i);
       var cos = Math.cos(i);
       sx = minSize / 2 * (1 - sin * innerRadius);
@@ -139,7 +144,7 @@ var Gauge = (function() {
     var angle, path, large;
 
     for (i = 1; i < segments.length; i++) {
-      angle = rad(Math.abs(segments[i] - segments[i - 1]) * this.options.angle / this.delta);
+      angle = rad(Math.abs(segments[i] - segments[i - 1]) * this.options.angle / Math.abs(this.delta));
 
       large = Number(angle > rad(180));
 
@@ -150,7 +155,7 @@ var Gauge = (function() {
 
       path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       path.setAttribute('d', 'M' + sx +' ' + sy + ' A' + radius + ',' + radius + ' 0 ' + large + ',1  ' + ex + ',' + ey);
-      path.setAttribute('class', 'gauge-arc gauge-arc-' + i);
+      path.setAttribute('class', 'gauge-arc gauge-segment-' + i);
       this.svg.appendChild(path);
 
       sx = ex;

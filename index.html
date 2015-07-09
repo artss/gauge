@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="css/gauge.css">
   <style>
     #gauge {
-      width: 800px;
-      height: 800px;
+      width: 400px;
+      height: 400px;
     }
 
     #gauge svg {
@@ -17,15 +17,15 @@
       border: solid 1px #e0e0e0;
     }
 
-    .gauge-arc-1 {
+    .gauge-segment-1 {
       stroke: red;
     }
 
-    .gauge-arc-2 {
+    .gauge-segment-2 {
       stroke: green;
     }
 
-    .gauge-arc-3 {
+    .gauge-segment-3 {
       stroke: blue;
     }
   </style>
@@ -40,10 +40,10 @@
 
     var gauge = new Gauge(el, {
       angle: 270,
-      from: -10,
-      to: 33,
-      step: 5,
-      segments: [5, 20],
+      from: -100,
+      to: -1100,
+      step: 50,
+      segments: [-500, -200],
       inset: true,
       value: 10
     });
