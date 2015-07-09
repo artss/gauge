@@ -6,6 +6,10 @@
 
   <link rel="stylesheet" href="css/gauge.css">
   <style>
+    * {
+      font-family: sans-serif;
+    }
+
     #gauge {
       width: 400px;
       height: 400px;
@@ -49,14 +53,14 @@
     var el = document.getElementById('gauge');
 
     var gauge = new Gauge(el, {
-      label: 'vanilla',
+      label: 'VanillaJS',
       angle: 270,
       segments: [40, 80],
       value: 20
     });
 
     var $gauge = $('#gauge-jquery').gauge({
-      label: 'jquery',
+      label: 'jQuery',
       angle: 180,
       from: 1,
       to: -1,

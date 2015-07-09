@@ -16,10 +16,9 @@
 }
 
 .gauge-marks-text {
-  font-family: sans-serif;
+  text-anchor: middle;
   font-size: 12px;
   fill: #a0a0a0;
-  text-anchor: middle;
 }
 
 .gauge-arrow {
@@ -31,5 +30,11 @@
 
   transition: transform 0.25s ease;
   transform-origin: center bottom;
+}
+
+.gauge-label {
+  text-anchor: middle;
+  font-size: 16px;
+  fill: #a0a0a0;
 }
 

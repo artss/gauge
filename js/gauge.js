@@ -180,6 +180,17 @@ var Gauge = (function() {
     this.arrow.setAttribute('d', 'M' + sx + ',' + sy + ' l' + (size.width * 0.02) + ',' + arrowSize + ' l' + (-size.width * 0.04) + ',0 z');
     this.svg.appendChild(this.arrow);
 
+    // Render label
+
+    if (this.options.label) {
+      var label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      label.setAttribute('class', 'gauge-label');
+      label.setAttribute('x', size.width / 2);
+      label.setAttribute('y', size.height / 1.5);
+      label.appendChild(document.createTextNode(this.options.label));
+      this.svg.appendChild(label);
+    }
+
     this.setValue(isFinite(this.options.value) ? this.options.value : this.options.from);
   }
 
