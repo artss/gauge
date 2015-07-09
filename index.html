@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gauge</title>
+
+  <link rel="stylesheet" href="css/gauge.css">
+  <style>
+    #gauge {
+      width: 800px;
+      height: 800px;
+    }
+
+    #gauge svg {
+      width: 100%;
+      height: 100%;
+      border: solid 1px #e0e0e0;
+    }
+
+    .gauge-arc-1 {
+      stroke: red;
+    }
+
+    .gauge-arc-2 {
+      stroke: green;
+    }
+
+    .gauge-arc-3 {
+      stroke: blue;
+    }
+  </style>
+
+  <script src="js/gauge.js"></script>
+</head>
+<body>
+  <div id="gauge"></div>
+
+  <script>
+    var el = document.getElementById('gauge');
+
+    var gauge = new Gauge(el, {
+      angle: 270,
+      from: -10,
+      to: 33,
+      step: 5,
+      segments: [5, 20],
+      inset: true,
+      value: 10
+    });
+  </script>
+</body>
+</html>
+

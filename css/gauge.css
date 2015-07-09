@@ -1,0 +1,19 @@
+.gauge-arc {
+  stroke: #e0e0e0;
+  stroke-width: 3px;
+  fill: transparent;
+}
+
+.gauge-marks {
+  stroke: #a0a0a0;
+  stroke-width: 1px;
+  fill: transparent;
+}
+
+.gauge-marks-text {
+  font-family: sans-serif;
+  font-size: 12px;
+  fill: #a0a0a0;
+  text-anchor: middle;
+}
+
