@@ -34,3 +34,14 @@ var $gauge = $('#gauge-jquery').gauge({
 $gauge.gauge(-0.7);
 ```
 
+## Options
+
+* angle — arc angle in degrees (270).
+* from — start value (0).
+* to — end value (100).
+* step — the interval at which marks will be placed (20).
+* markFormat — function to format mark string (see the example above).
+* inset — the flag to specify whether marks are inside the arc (false).
+* segments — arc segments boundaries.
+* value — value. Can be set later using `.setValue` method.
+
