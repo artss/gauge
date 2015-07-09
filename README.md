@@ -1,5 +1,11 @@
 # Gauge
 
+## Installation
+
+```sh
+bower install gauge-svg
+```
+
 ## Usage
 
 ```js
