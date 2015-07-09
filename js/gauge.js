@@ -249,7 +249,7 @@
       var gauge = $el.data('gauge');
 
       if (!gauge) {
-        gauge = new Gauge(this, options);
+        gauge = new Gauge($el[0], options);
         $el.data('gauge', gauge);
       }
 
