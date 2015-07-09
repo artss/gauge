@@ -1,6 +1,6 @@
-/* global $ */
+/* global module, $ */
 
-var Gauge = (function() {
+(function() {
   'use strict';
 
   /**
@@ -49,7 +49,11 @@ var Gauge = (function() {
    *    angle
    *    from
    *    to
+   *    step
+   *    markFormat
    *    segments
+   *    inset
+   *    value
    */
   function Gauge(el, options) {
     this.el = el;
@@ -245,7 +249,7 @@ var Gauge = (function() {
       var gauge = $el.data('gauge');
 
       if (!gauge) {
-        gauge = new Gauge($el[0], options);
+        gauge = new Gauge(this, options);
         $el.data('gauge', gauge);
       }
 
@@ -257,6 +261,14 @@ var Gauge = (function() {
     };
   }
 
-  return Gauge;
+  // Export
+
+  if (typeof window.define === 'function' && window.define.amd) {
+    window.define('gauge', [], function() { return Gauge; });
+  } else if (typeof module === 'object') {
+    module.exports = Gauge;
+  } else {
+    window.Gauge = Gauge;
+  }
 })();
 
