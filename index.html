@@ -11,8 +11,8 @@
     }
 
     #gauge {
-      width: 400px;
-      height: 400px;
+      width: 250px;
+      height: 250px;
     }
 
     #gauge-jquery {
@@ -36,14 +36,14 @@
       stroke: #a02040;
     }
 
-    #gauge-jquery .gauge-arrow {
-      fill: green;
-      stroke: green;
+    #gauge-jquery .gauge-arrow,
+    #gauge-jquery .gauge-arrow:before {
+      background: #e0b030;
     }
   </style>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="js/gauge.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="js/gauge.js"></script>
 </head>
 <body>
   <input id="gauge-val" type="number" value="20" min="0" max="100">
@@ -82,6 +82,13 @@
 
     $('#gauge-jquery-val').change(function() {
       $gauge.gauge($(this).val());
+    });
+
+    // Trigger chande on enter (IE)
+    $('input').keypress(function(evt) {
+        if (evt.keyCode === 13) {
+          $(this).trigger('change');
+        }
     });
   </script>
 </body>

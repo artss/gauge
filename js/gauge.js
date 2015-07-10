@@ -68,6 +68,9 @@
 
     this.delta = this.options.to - this.options.from;
 
+    var cls = this.el.className;
+    this.el.className = cls ? cls + ' gauge-container' : 'gauge-container';
+
     var size = this.size();
     var minSize = size.width >= size.height ? size.height : size.width;
 
@@ -175,14 +178,10 @@
 
     // Render arrow
 
-    var arrowSize = minSize * 0.3;
-    sx = size.width / 2;
-    sy = size.height / 2 - arrowSize;
-    this.arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    this.arrow = document.createElement('div');
     this.arrow.setAttribute('class', 'gauge-arrow');
-    this.arrow.setAttribute('stroke-linecap', 'round');
-    this.arrow.setAttribute('d', 'M' + sx + ',' + sy + ' l' + (size.width * 0.02) + ',' + arrowSize + ' l' + (-size.width * 0.04) + ',0 z');
-    this.svg.appendChild(this.arrow);
+
+    this.el.appendChild(this.arrow);
 
     // Render label
 
@@ -232,7 +231,9 @@
 
     var angle = (Math.abs((value - this.options.from) / this.delta) - 0.5) * this.options.angle;
 
-    this.arrow.style.transform = 'rotate(' + angle + 'deg)';
+    var transform = 'rotate(' + angle + 'deg)';
+    this.arrow.style.transform = transform;
+    this.arrow.style.msTransform = transform;
 
     return this.value;
   };
@@ -240,9 +241,9 @@
   /**
    * jQuery plugin
    */
-  if ($) {
-    $.fn.gauge = function(options) {
-      var $el = $(this);
+  if (typeof window.jQuery === 'function') {
+    window.jQuery.fn.gauge = function(options) {
+      var $el = window.jQuery(this);
 
       var gauge = $el.data('gauge');
 
